@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    h1= title
+    form(method='post')
+      .loginForm
+        label(for='login') Логин
+        br
+        input#login(type='text', name='login')
+      .passwordForm
+        label(for='password') Пароль
+        br
+        input#password(type='password', name='password')
+      button(class='btn waves-effect waves-light', type='Login') Войти
+    a(href='/registration') Зарегестрироваться
