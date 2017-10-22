@@ -1,11 +1,12 @@
 let crypto = require('crypto'),
+    beautifyUnique = require('mongoose-beautiful-unique-validation'),
     mongoose = require('../bin/mongoose'),
     Schema = mongoose.Schema;
 
 let schema = new Schema({
     username: {
         type: String,
-        unique: true,
+        unique: 'Пользователь {VALUE} уже существует',
         required: true
     },
     hashedPassword: {
@@ -21,6 +22,8 @@ let schema = new Schema({
         default: Date.now
     }
 });
+
+schema.plugin(beautifyUnique);
 
 schema.methods.encryptPassword = function (password) {
     return crypto.createHmac('sha1', this.salt).update(password).digest('hex');
