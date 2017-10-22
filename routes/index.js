@@ -4,7 +4,7 @@ let User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Авторизация' });
 });
 
 router.get('/registration', (req, res, next) => {
@@ -15,7 +15,7 @@ router.get('/registration', (req, res, next) => {
 
 router.post('/registration', (req, res) => {
     let user = {
-        username: req.body.login,
+        username: req.body.username,
         password: req.body.password
     };
     let data = new User(user);
@@ -23,10 +23,10 @@ router.post('/registration', (req, res) => {
         console.log('Сохранение объекта', doc);
         res.redirect('/')
     }).catch((err) => {
-        console.error(err.message);
+        console.error(err);
         res.render('registration', {
             title: 'Регистрация',
-            message: err.message,
+            message: err.errors.username
         });
     })
 });
