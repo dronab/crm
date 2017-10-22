@@ -9,21 +9,6 @@ let express = require('express'),
 let index = require('./routes/index'),
     users = require('./routes/users');
 
-let User = require('./models/user');
-
-let user = new User({
-    username: 'Tester',
-    password: 'secret'
-});
-
-user.save(function (err, user, affected) {
-  if (err) throw err;
-
-  User.findOne({username: 'Tester'}, function (err, tester) {
-      console.log(tester);
-  })
-});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
