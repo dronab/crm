@@ -12,6 +12,12 @@ const express = require('express'),
 let index = require('./routes/index'),
 	users = require('./routes/users');
 
+let mustBeAuthenticated = (req, res, next) => {
+	req.isAuthenticated()
+		? next()
+		: res.redirect('/');
+};
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -29,6 +35,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.all('/users', mustBeAuthenticated);
 
 app.use('/', index);
 app.use('/users', users);
