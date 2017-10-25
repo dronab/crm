@@ -1,0 +1,7 @@
+/.idea/
+.gitignore
+.idea/crm_nodeJs.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
+node_modules/
