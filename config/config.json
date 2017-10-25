@@ -9,5 +9,10 @@
         }
       }
     }
+  },
+  "session": {
+    "secret": "secret_key",
+    "resave": false,
+    "saveUninitialized": true
   }
 }
