@@ -6,6 +6,7 @@ const express = require('express'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
+	passport = require('passport'),
 	app = express();
 
 let index = require('./routes/index'),
@@ -26,6 +27,7 @@ app.use(session({
 	resave: config.get('session:resave'),
 	saveUninitialized: config.get('session:saveUninitialized'),
 }));
+app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
