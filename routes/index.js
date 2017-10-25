@@ -8,13 +8,12 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-	res.render('index', { title: 'Авторизация' });
+	res.render('index', { user: req.user });
 });
 
-router.post('/', passport.authenticate('local', {
-	successRedirect: '/user',
-	failureRedirect: '/',
-}));
+router.post('/', passport.authenticate('local'), (req, res) => {
+	res.redirect('/users');
+});
 
 router.get('/registration', (req, res) => {
 	res.render('registration', {
@@ -24,9 +23,7 @@ router.get('/registration', (req, res) => {
 router.post('/registration', (req, res) => {
 	User.register(new User({username: req.body.username}), req.body.password, (err, account) => {
 		if(err){
-			console.error(err.message);
-			console.error(err.account);
-			return res.render('registration', {account: account, message: err.message});
+			return res.render('registration', {account: account, message: 'Такой полдьзователь уже зарегестрировался'});
 		}
 		passport.authenticate('local')(req, res, function () {
 			res.redirect('/');
