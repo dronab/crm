@@ -2,12 +2,14 @@ extends layout
 
 block content
   .container
-    h1= title
+    if(message)
+      p=message
+    h1 Авторизация
     form(method='post')
       .loginForm
         label(for='login') Логин
         br
-        input#login(type='text', name='login')
+        input#login(type='text', name='username')
       .passwordForm
         label(for='password') Пароль
         br
