@@ -1,5 +1,4 @@
-let crypto = require('crypto'),
-	beautifyUnique = require('mongoose-beautiful-unique-validation'),
+let beautifyUnique = require('mongoose-beautiful-unique-validation'),
 	mongoose = require('../bin/mongoose'),
 	passportLocalMongoose = require('passport-local-mongoose'),
 	Schema = mongoose.Schema;
@@ -20,6 +19,10 @@ let schema = new Schema({
 });
 
 schema.plugin(beautifyUnique);
-schema.plugin(passportLocalMongoose);
+schema.plugin(passportLocalMongoose, {
+	errorMessages: {
+		UserExistsError: 'Данный пользовательуже зарегестрировался'
+	}
+});
 
 module.exports = mongoose.model('User', schema);
