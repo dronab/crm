@@ -34,12 +34,11 @@ app.use(session({
 	saveUninitialized: config.get('session:saveUninitialized'),
 }));
 app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.all('/users', mustBeAuthenticated);
-
 app.use('/', index);
-app.use('/users', users);
+app.use('/users', mustBeAuthenticated, users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
