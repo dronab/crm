@@ -6,13 +6,11 @@ block content
       p=message
     h1 Авторизация
     form(method='post')
-      .loginForm
-        label(for='login') Логин
-        br
+      div(class='input-field col s6')
         input#login(type='text', name='username')
-      .passwordForm
-        label(for='password') Пароль
-        br
+        label(for='login') Логин
+      div(class='input-field col s6')
         input#password(type='password', name='password')
+        label(for='password') Пароль
       button(class='btn waves-effect waves-light', type='Login') Войти
       a(href='/registration') Зарегестрироваться
