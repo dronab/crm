@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 // 	res.redirect('/users');
 // });
 router.post('/', (req, res) => {
-	User.register({username: 'username'}, 'password', (err, user) => {
+	User.register({username: req.body.username}, req.body.password, (err, user) => {
 		if (err){
 			return res.render('index', {message: err});
 		}
