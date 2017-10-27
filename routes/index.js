@@ -5,14 +5,27 @@ const express = require('express'),
 
 const router = express.Router();
 
-
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
 	res.render('index', { user: req.user });
 });
 
-router.post('/', passport.authenticate('local'), (req, res) => {
-	res.redirect('/users');
+// router.post('/', passport.authenticate('local'), (req, res) => {
+// 	res.redirect('/users');
+// });
+router.post('/', (req, res) => {
+	User.register({username: 'username'}, 'password', (err, user) => {
+		if (err){
+			return res.render('index', {message: err});
+		}
+		User.authenticate('username', 'password', (err, result) => {
+			if(err){
+				return res.render('index', {message: err});
+			}
+			console.log(result);
+			res.redirect('/users');
+		});
+	});
 });
 
 router.get('/registration', (req, res) => {
@@ -23,7 +36,7 @@ router.get('/registration', (req, res) => {
 router.post('/registration', (req, res) => {
 	User.register(new User({username: req.body.username}), req.body.password, (err, account) => {
 		if(err){
-			return res.render('registration', {account: account, message: 'Такой полдьзователь уже зарегестрировался'});
+			return res.render('registration', {account: account, message: err.message});
 		}
 		passport.authenticate('local')(req, res, function () {
 			res.redirect('/');
