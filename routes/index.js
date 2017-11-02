@@ -11,13 +11,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-	User.authenticate(req.body.username, req.body.password, (err, result) => {
+	let authenticate = User.authenticate();
+	authenticate(req.body.username, req.body.password, (err, result) => {
 		if (err) {
 			console.log(err);
 			return res.render('index', {message: err});
 		}
-		console.log(result);
-		res.redirect('/users');
+		if (result === false){
+			return res.render('index', {message: 'Неверный логи или пароль'});
+		}
+		passport.authenticate('local')(req, res, function () {
+			res.redirect('/users');
+		});
 	});
 });
 
