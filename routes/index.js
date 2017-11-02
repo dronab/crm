@@ -10,21 +10,14 @@ router.get('/', (req, res) => {
 	res.render('index', { user: req.user });
 });
 
-// router.post('/', passport.authenticate('local'), (req, res) => {
-// 	res.redirect('/users');
-// });
 router.post('/', (req, res) => {
-	User.register({username: req.body.username}, req.body.password, (err, user) => {
-		if (err){
+	User.authenticate(req.body.username, req.body.password, (err, result) => {
+		if (err) {
+			console.log(err);
 			return res.render('index', {message: err});
 		}
-		User.authenticate('username', 'password', (err, result) => {
-			if(err){
-				return res.render('index', {message: err});
-			}
-			console.log(result);
-			res.redirect('/users');
-		});
+		console.log(result);
+		res.redirect('/users');
 	});
 });
 
