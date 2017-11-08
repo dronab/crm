@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
 	let authenticate = User.authenticate();
 	authenticate(req.body.username, req.body.password, (err, result) => {
 		if (err) {
-			console.log(err);
 			return res.render('index', {message: err});
 		}
 		if (result === false){

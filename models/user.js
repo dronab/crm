@@ -1,13 +1,10 @@
-let beautifyUnique = require('mongoose-beautiful-unique-validation'),
-	mongoose = require('../bin/mongoose'),
+let mongoose = require('../bin/mongoose'),
 	passportLocalMongoose = require('passport-local-mongoose'),
 	Schema = mongoose.Schema;
 
 let schema = new Schema({
 	username: {
 		type: String,
-		unique: 'Пользователь {VALUE} уже существует',
-		required: true
 	},
 	password: {
 		type: String,
@@ -18,10 +15,11 @@ let schema = new Schema({
 	}
 });
 
-schema.plugin(beautifyUnique);
 schema.plugin(passportLocalMongoose, {
 	errorMessages: {
-		UserExistsError: 'Данный пользовательуже зарегестрировался'
+		UserExistsError: 'Данный пользователь уже зарегестрировался',
+		IncorrectPasswordError: 'Неправильный логин или пароль',
+		IncorrectUsernameError: 'Неправильный логин или пароль'
 	}
 });
 
