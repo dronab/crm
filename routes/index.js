@@ -28,8 +28,9 @@ router.post('/', (req, res) => {
 });
 
 router.get('/registration', (req, res) => {
-	res.render('registration', {
-	});
+	req.isAuthenticated()
+		? res.redirect('/users')
+		: res.render('registration', {});
 });
 
 router.post('/registration', (req, res) => {
@@ -41,6 +42,11 @@ router.post('/registration', (req, res) => {
 			res.redirect('/');
 		});
 	});
+});
+
+router.get('/logout', (req, res) => {
+	req.logout();
+	res.redirect('/');
 });
 
 module.exports = router;
