@@ -1,13 +1,15 @@
-const express = require('express'),
+let express = require('express'),
 	passport = require('passport'),
 	localPassport = require('../boot/passport'),
 	User = require('../models/user');
 
-const router = express.Router();
+let router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-	res.render('index', { user: req.user });
+	req.isAuthenticated()
+		? res.redirect('/users')
+		: res.render('index', { user: req.user });
 });
 
 router.post('/', (req, res) => {

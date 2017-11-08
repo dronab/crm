@@ -1,4 +1,4 @@
-const express = require('express'),
+let express = require('express'),
 	path = require('path'),
 	config = require('./config'),
 	favicon = require('serve-favicon'),
