@@ -1,0 +1,45 @@
+extends layout
+mixin navLink(link, name)
+    li
+        a(
+        href=link
+        ) #{name}
+mixin gridView()
+    tr
+      td
+      td
+      td
+      td
+      td
+      td
+      td
+
+block content
+    .row
+        div(class='col s3')
+            p=username
+            ul
+                +navLink('#', 'Заказы')
+                +navLink('#', 'Доставка')
+                +navLink('#', 'Поломки')
+                +navLink('#', 'Закупки')
+                +navLink('#', 'Задачи')
+                +navLink('#', 'Партнеры')
+                +navLink('#', 'Guide')
+                +navLink('#', 'Контакты')
+        div(class='col s9')
+            h4 Добро пожаловать #{username}
+            table(class='highlight')
+                thead
+                    tr
+                        th Закза
+                        th Срок
+                        th Описание
+                        th Тег
+                        th Доставка
+                        th Сумма
+                        th Статус
+                tbody
+                    +gridView
+            a(class='btn-floating btn-large waves-effect waves-light red' href='/create')
+                i.material-icons +
