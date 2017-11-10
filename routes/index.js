@@ -9,7 +9,7 @@ let router = express.Router();
 router.get('/', (req, res) => {
 	req.isAuthenticated()
 		? res.redirect('/users')
-		: res.render('index', { user: req.user });
+		: res.render('index', { user: req.user, title: 'Авторизация' });
 });
 
 router.post('/', (req, res) => {
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 router.get('/registration', (req, res) => {
 	req.isAuthenticated()
 		? res.redirect('/users')
-		: res.render('registration', {});
+		: res.render('registration', {title: 'Регистрация'});
 });
 
 router.post('/registration', (req, res) => {
