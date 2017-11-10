@@ -10,6 +10,7 @@ let express = require('express'),
 	app = express();
 
 let index = require('./routes/index'),
+	create = require('./routes/create'),
 	users = require('./routes/users');
 
 let mustBeAuthenticated = (req, res, next) => {
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', mustBeAuthenticated, users);
+app.use('/create/', mustBeAuthenticated, create);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
