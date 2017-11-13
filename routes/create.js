@@ -4,6 +4,7 @@ let express = require('express'),
     router = express.Router();
 
 router.post('/zakaz', (req, res) => {
+    /** Приходит Post запроо от ajax и обрабатывается тут*/
    let form = new multiparty.Form();
     console.log(req.body);
 
@@ -22,6 +23,7 @@ router.post('/zakaz', (req, res) => {
       }
    });
 
+   /** После успешной сохранение происходит close*/
     form.on('close', () => {
        console.log('Зарузка завершена');
     });

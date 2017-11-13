@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	$('#form-create_zakaz').submit(function (e) {
 		console.log($(this).serialize());
+		/** Создание формы для multipart/form-data */
 		let formData = new FormData($(this)[0]);
 		e.preventDefault();
 		$.ajax({
@@ -12,6 +13,7 @@ $(document).ready(function () {
 			data: formData
 		}).done((result)=> {
 			if (result === true){
+                /** Если пришло true то форма в модальном окне срасывается и одальное окно закрывается*/
 				this.reset();
 				$('#modal1').modal('close');
 			} else {
