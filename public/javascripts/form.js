@@ -3,7 +3,6 @@ $(document).ready(function () {
 		console.log($(this).serialize());
 		let formData = new FormData($(this)[0]);
 		e.preventDefault();
-		let form = $(this);
 		$.ajax({
 			url: 'create/zakaz',
 			type: 'POST',
