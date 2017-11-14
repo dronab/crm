@@ -7,7 +7,7 @@ mixin navLink(link, name, icon)
 mixin gridView()
     each val in order
         tr
-          td
+          td=val.orderId
           td=val.time
           td=val.description
           td=val.tag
