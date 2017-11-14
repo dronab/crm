@@ -8,10 +8,12 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
+    "connect-multiparty": "^2.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
+    "moment": "^2.19.2",
     "mongodb": "^2.2.33",
     "mongoose": "^4.12.4",
     "mongoose-auto-increment": "^5.0.1",
