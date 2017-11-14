@@ -5,7 +5,7 @@ $(document).ready(function () {
 		let formData = new FormData($(this)[0]);
 		e.preventDefault();
 		$.ajax({
-			url: 'create/zakaz',
+			url: 'create/order',
 			type: 'POST',
             contentType: false,
             processData: false,
