@@ -119,8 +119,8 @@ block content
                                 input.datepicker#datetime_control-zakaz(type='text' required=true name='time')
                                 label(for='datetime_control-zakaz') Назначить срок
                             .input-field.col.s7
-                                select
-                                    option(value='' disabled=true selected=true name='status') Назначить ответственного
+                                select(name='status')
+                                    option(value='' disabled=true selected=true) Назначить ответственного
                                     option(value='0') Дизайнер
                                     option(value='1') Мастер
                                     option(value='2') Аутсорс
